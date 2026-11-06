@@ -19,7 +19,7 @@ import { Route as AuthedOnboardingApplicationRouteImport } from './routes/_authe
 import { Route as AuthedOnboardingIdentityRouteImport } from './routes/_authed/onboarding/identity'
 import { Route as AuthedAdminCohortsCohortIdRouteRouteImport } from './routes/_authed/admin/cohorts/$cohortId/route'
 import { Route as AuthedCohortsCohortIdMembersRouteImport } from './routes/_authed/cohorts/$cohortId/members'
-import { Route as AuthedCohortsCohortIdProfileRouteImport } from './routes/_authed/cohorts/$cohortId/profile'
+import { Route as AuthedCohortsCohortIdSettingsRouteImport } from './routes/_authed/cohorts/$cohortId/settings'
 import { Route as AuthedCohortsCohortIdTeamsRouteImport } from './routes/_authed/cohorts/$cohortId/teams'
 import { Route as AuthedAdminCohortsCohortIdMembersRouteImport } from './routes/_authed/admin/cohorts/$cohortId/members'
 import { Route as AuthedAdminCohortsCohortIdTeamsRouteImport } from './routes/_authed/admin/cohorts/$cohortId/teams'
@@ -78,10 +78,10 @@ const AuthedCohortsCohortIdMembersRoute =
     path: '/members',
     getParentRoute: () => AuthedCohortsCohortIdRouteRoute,
   } as any)
-const AuthedCohortsCohortIdProfileRoute =
-  AuthedCohortsCohortIdProfileRouteImport.update({
-    id: '/profile',
-    path: '/profile',
+const AuthedCohortsCohortIdSettingsRoute =
+  AuthedCohortsCohortIdSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
     getParentRoute: () => AuthedCohortsCohortIdRouteRoute,
   } as any)
 const AuthedCohortsCohortIdTeamsRoute =
@@ -113,7 +113,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AuthedAdminIndexRoute
   '/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
   '/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
-  '/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
+  '/cohorts/$cohortId/settings': typeof AuthedCohortsCohortIdSettingsRoute
   '/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
   '/admin/cohorts/$cohortId/members': typeof AuthedAdminCohortsCohortIdMembersRoute
   '/admin/cohorts/$cohortId/teams': typeof AuthedAdminCohortsCohortIdTeamsRoute
@@ -127,7 +127,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AuthedAdminIndexRoute
   '/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
   '/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
-  '/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
+  '/cohorts/$cohortId/settings': typeof AuthedCohortsCohortIdSettingsRoute
   '/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
   '/admin/cohorts/$cohortId/members': typeof AuthedAdminCohortsCohortIdMembersRoute
   '/admin/cohorts/$cohortId/teams': typeof AuthedAdminCohortsCohortIdTeamsRoute
@@ -144,7 +144,7 @@ export interface FileRoutesById {
   '/_authed/admin/': typeof AuthedAdminIndexRoute
   '/_authed/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
   '/_authed/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
-  '/_authed/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
+  '/_authed/cohorts/$cohortId/settings': typeof AuthedCohortsCohortIdSettingsRoute
   '/_authed/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
   '/_authed/admin/cohorts/$cohortId/members': typeof AuthedAdminCohortsCohortIdMembersRoute
   '/_authed/admin/cohorts/$cohortId/teams': typeof AuthedAdminCohortsCohortIdTeamsRoute
@@ -161,7 +161,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/admin/cohorts/$cohortId'
     | '/cohorts/$cohortId/members'
-    | '/cohorts/$cohortId/profile'
+    | '/cohorts/$cohortId/settings'
     | '/cohorts/$cohortId/teams'
     | '/admin/cohorts/$cohortId/members'
     | '/admin/cohorts/$cohortId/teams'
@@ -175,7 +175,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin/cohorts/$cohortId'
     | '/cohorts/$cohortId/members'
-    | '/cohorts/$cohortId/profile'
+    | '/cohorts/$cohortId/settings'
     | '/cohorts/$cohortId/teams'
     | '/admin/cohorts/$cohortId/members'
     | '/admin/cohorts/$cohortId/teams'
@@ -191,7 +191,7 @@ export interface FileRouteTypes {
     | '/_authed/admin/'
     | '/_authed/admin/cohorts/$cohortId'
     | '/_authed/cohorts/$cohortId/members'
-    | '/_authed/cohorts/$cohortId/profile'
+    | '/_authed/cohorts/$cohortId/settings'
     | '/_authed/cohorts/$cohortId/teams'
     | '/_authed/admin/cohorts/$cohortId/members'
     | '/_authed/admin/cohorts/$cohortId/teams'
@@ -275,11 +275,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedCohortsCohortIdMembersRouteImport
       parentRoute: typeof AuthedCohortsCohortIdRouteRoute
     }
-    '/_authed/cohorts/$cohortId/profile': {
-      id: '/_authed/cohorts/$cohortId/profile'
-      path: '/profile'
-      fullPath: '/cohorts/$cohortId/profile'
-      preLoaderRoute: typeof AuthedCohortsCohortIdProfileRouteImport
+    '/_authed/cohorts/$cohortId/settings': {
+      id: '/_authed/cohorts/$cohortId/settings'
+      path: '/settings'
+      fullPath: '/cohorts/$cohortId/settings'
+      preLoaderRoute: typeof AuthedCohortsCohortIdSettingsRouteImport
       parentRoute: typeof AuthedCohortsCohortIdRouteRoute
     }
     '/_authed/cohorts/$cohortId/teams': {
@@ -339,14 +339,14 @@ const AuthedAdminRouteRouteWithChildren =
 
 interface AuthedCohortsCohortIdRouteRouteChildren {
   AuthedCohortsCohortIdMembersRoute: typeof AuthedCohortsCohortIdMembersRoute
-  AuthedCohortsCohortIdProfileRoute: typeof AuthedCohortsCohortIdProfileRoute
+  AuthedCohortsCohortIdSettingsRoute: typeof AuthedCohortsCohortIdSettingsRoute
   AuthedCohortsCohortIdTeamsRoute: typeof AuthedCohortsCohortIdTeamsRoute
 }
 
 const AuthedCohortsCohortIdRouteRouteChildren: AuthedCohortsCohortIdRouteRouteChildren =
   {
     AuthedCohortsCohortIdMembersRoute: AuthedCohortsCohortIdMembersRoute,
-    AuthedCohortsCohortIdProfileRoute: AuthedCohortsCohortIdProfileRoute,
+    AuthedCohortsCohortIdSettingsRoute: AuthedCohortsCohortIdSettingsRoute,
     AuthedCohortsCohortIdTeamsRoute: AuthedCohortsCohortIdTeamsRoute,
   }
 
