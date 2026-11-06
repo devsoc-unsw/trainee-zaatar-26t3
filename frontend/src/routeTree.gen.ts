@@ -15,10 +15,9 @@ import { Route as SignInRouteImport } from './routes/sign-in'
 import { Route as AuthedAdminRouteRouteImport } from './routes/_authed/admin/route'
 import { Route as AuthedAdminIndexRouteImport } from './routes/_authed/admin/index'
 import { Route as AuthedCohortsCohortIdRouteRouteImport } from './routes/_authed/cohorts/$cohortId/route'
-import { Route as AuthedOnboardingDetailsRouteImport } from './routes/_authed/onboarding/details'
-import { Route as AuthedOnboardingProfileRouteImport } from './routes/_authed/onboarding/profile'
+import { Route as AuthedOnboardingApplicationRouteImport } from './routes/_authed/onboarding/application'
+import { Route as AuthedOnboardingIdentityRouteImport } from './routes/_authed/onboarding/identity'
 import { Route as AuthedAdminCohortsCohortIdRouteRouteImport } from './routes/_authed/admin/cohorts/$cohortId/route'
-import { Route as AuthedAdminCohortsCohortRouteImport } from './routes/_authed/admin/cohorts/cohort'
 import { Route as AuthedCohortsCohortIdMembersRouteImport } from './routes/_authed/cohorts/$cohortId/members'
 import { Route as AuthedCohortsCohortIdProfileRouteImport } from './routes/_authed/cohorts/$cohortId/profile'
 import { Route as AuthedCohortsCohortIdTeamsRouteImport } from './routes/_authed/cohorts/$cohortId/teams'
@@ -55,26 +54,22 @@ const AuthedCohortsCohortIdRouteRoute =
     path: '/cohorts/$cohortId',
     getParentRoute: () => AuthedRoute,
   } as any)
-const AuthedOnboardingDetailsRoute = AuthedOnboardingDetailsRouteImport.update({
-  id: '/onboarding/details',
-  path: '/onboarding/details',
-  getParentRoute: () => AuthedRoute,
-} as any)
-const AuthedOnboardingProfileRoute = AuthedOnboardingProfileRouteImport.update({
-  id: '/onboarding/profile',
-  path: '/onboarding/profile',
-  getParentRoute: () => AuthedRoute,
-} as any)
+const AuthedOnboardingApplicationRoute =
+  AuthedOnboardingApplicationRouteImport.update({
+    id: '/onboarding/application',
+    path: '/onboarding/application',
+    getParentRoute: () => AuthedRoute,
+  } as any)
+const AuthedOnboardingIdentityRoute =
+  AuthedOnboardingIdentityRouteImport.update({
+    id: '/onboarding/identity',
+    path: '/onboarding/identity',
+    getParentRoute: () => AuthedRoute,
+  } as any)
 const AuthedAdminCohortsCohortIdRouteRoute =
   AuthedAdminCohortsCohortIdRouteRouteImport.update({
     id: '/cohorts/$cohortId',
     path: '/cohorts/$cohortId',
-    getParentRoute: () => AuthedAdminRouteRoute,
-  } as any)
-const AuthedAdminCohortsCohortRoute =
-  AuthedAdminCohortsCohortRouteImport.update({
-    id: '/cohorts/cohort',
-    path: '/cohorts/cohort',
     getParentRoute: () => AuthedAdminRouteRoute,
   } as any)
 const AuthedCohortsCohortIdMembersRoute =
@@ -113,11 +108,10 @@ export interface FileRoutesByFullPath {
   '/sign-in': typeof SignInRoute
   '/admin': typeof AuthedAdminRouteRouteWithChildren
   '/cohorts/$cohortId': typeof AuthedCohortsCohortIdRouteRouteWithChildren
-  '/onboarding/details': typeof AuthedOnboardingDetailsRoute
-  '/onboarding/profile': typeof AuthedOnboardingProfileRoute
+  '/onboarding/application': typeof AuthedOnboardingApplicationRoute
+  '/onboarding/identity': typeof AuthedOnboardingIdentityRoute
   '/admin/': typeof AuthedAdminIndexRoute
   '/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
-  '/admin/cohorts/cohort': typeof AuthedAdminCohortsCohortRoute
   '/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
   '/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
   '/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
@@ -128,11 +122,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sign-in': typeof SignInRoute
   '/cohorts/$cohortId': typeof AuthedCohortsCohortIdRouteRouteWithChildren
-  '/onboarding/details': typeof AuthedOnboardingDetailsRoute
-  '/onboarding/profile': typeof AuthedOnboardingProfileRoute
+  '/onboarding/application': typeof AuthedOnboardingApplicationRoute
+  '/onboarding/identity': typeof AuthedOnboardingIdentityRoute
   '/admin': typeof AuthedAdminIndexRoute
   '/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
-  '/admin/cohorts/cohort': typeof AuthedAdminCohortsCohortRoute
   '/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
   '/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
   '/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
@@ -146,11 +139,10 @@ export interface FileRoutesById {
   '/sign-in': typeof SignInRoute
   '/_authed/admin': typeof AuthedAdminRouteRouteWithChildren
   '/_authed/cohorts/$cohortId': typeof AuthedCohortsCohortIdRouteRouteWithChildren
-  '/_authed/onboarding/details': typeof AuthedOnboardingDetailsRoute
-  '/_authed/onboarding/profile': typeof AuthedOnboardingProfileRoute
+  '/_authed/onboarding/application': typeof AuthedOnboardingApplicationRoute
+  '/_authed/onboarding/identity': typeof AuthedOnboardingIdentityRoute
   '/_authed/admin/': typeof AuthedAdminIndexRoute
   '/_authed/admin/cohorts/$cohortId': typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
-  '/_authed/admin/cohorts/cohort': typeof AuthedAdminCohortsCohortRoute
   '/_authed/cohorts/$cohortId/members': typeof AuthedCohortsCohortIdMembersRoute
   '/_authed/cohorts/$cohortId/profile': typeof AuthedCohortsCohortIdProfileRoute
   '/_authed/cohorts/$cohortId/teams': typeof AuthedCohortsCohortIdTeamsRoute
@@ -164,11 +156,10 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/admin'
     | '/cohorts/$cohortId'
-    | '/onboarding/details'
-    | '/onboarding/profile'
+    | '/onboarding/application'
+    | '/onboarding/identity'
     | '/admin/'
     | '/admin/cohorts/$cohortId'
-    | '/admin/cohorts/cohort'
     | '/cohorts/$cohortId/members'
     | '/cohorts/$cohortId/profile'
     | '/cohorts/$cohortId/teams'
@@ -179,11 +170,10 @@ export interface FileRouteTypes {
     | '/'
     | '/sign-in'
     | '/cohorts/$cohortId'
-    | '/onboarding/details'
-    | '/onboarding/profile'
+    | '/onboarding/application'
+    | '/onboarding/identity'
     | '/admin'
     | '/admin/cohorts/$cohortId'
-    | '/admin/cohorts/cohort'
     | '/cohorts/$cohortId/members'
     | '/cohorts/$cohortId/profile'
     | '/cohorts/$cohortId/teams'
@@ -196,11 +186,10 @@ export interface FileRouteTypes {
     | '/sign-in'
     | '/_authed/admin'
     | '/_authed/cohorts/$cohortId'
-    | '/_authed/onboarding/details'
-    | '/_authed/onboarding/profile'
+    | '/_authed/onboarding/application'
+    | '/_authed/onboarding/identity'
     | '/_authed/admin/'
     | '/_authed/admin/cohorts/$cohortId'
-    | '/_authed/admin/cohorts/cohort'
     | '/_authed/cohorts/$cohortId/members'
     | '/_authed/cohorts/$cohortId/profile'
     | '/_authed/cohorts/$cohortId/teams'
@@ -258,18 +247,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedCohortsCohortIdRouteRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/_authed/onboarding/details': {
-      id: '/_authed/onboarding/details'
-      path: '/onboarding/details'
-      fullPath: '/onboarding/details'
-      preLoaderRoute: typeof AuthedOnboardingDetailsRouteImport
+    '/_authed/onboarding/application': {
+      id: '/_authed/onboarding/application'
+      path: '/onboarding/application'
+      fullPath: '/onboarding/application'
+      preLoaderRoute: typeof AuthedOnboardingApplicationRouteImport
       parentRoute: typeof AuthedRoute
     }
-    '/_authed/onboarding/profile': {
-      id: '/_authed/onboarding/profile'
-      path: '/onboarding/profile'
-      fullPath: '/onboarding/profile'
-      preLoaderRoute: typeof AuthedOnboardingProfileRouteImport
+    '/_authed/onboarding/identity': {
+      id: '/_authed/onboarding/identity'
+      path: '/onboarding/identity'
+      fullPath: '/onboarding/identity'
+      preLoaderRoute: typeof AuthedOnboardingIdentityRouteImport
       parentRoute: typeof AuthedRoute
     }
     '/_authed/admin/cohorts/$cohortId': {
@@ -277,13 +266,6 @@ declare module '@tanstack/react-router' {
       path: '/cohorts/$cohortId'
       fullPath: '/admin/cohorts/$cohortId'
       preLoaderRoute: typeof AuthedAdminCohortsCohortIdRouteRouteImport
-      parentRoute: typeof AuthedAdminRouteRoute
-    }
-    '/_authed/admin/cohorts/cohort': {
-      id: '/_authed/admin/cohorts/cohort'
-      path: '/cohorts/cohort'
-      fullPath: '/admin/cohorts/cohort'
-      preLoaderRoute: typeof AuthedAdminCohortsCohortRouteImport
       parentRoute: typeof AuthedAdminRouteRoute
     }
     '/_authed/cohorts/$cohortId/members': {
@@ -344,14 +326,12 @@ const AuthedAdminCohortsCohortIdRouteRouteWithChildren =
 interface AuthedAdminRouteRouteChildren {
   AuthedAdminIndexRoute: typeof AuthedAdminIndexRoute
   AuthedAdminCohortsCohortIdRouteRoute: typeof AuthedAdminCohortsCohortIdRouteRouteWithChildren
-  AuthedAdminCohortsCohortRoute: typeof AuthedAdminCohortsCohortRoute
 }
 
 const AuthedAdminRouteRouteChildren: AuthedAdminRouteRouteChildren = {
   AuthedAdminIndexRoute: AuthedAdminIndexRoute,
   AuthedAdminCohortsCohortIdRouteRoute:
     AuthedAdminCohortsCohortIdRouteRouteWithChildren,
-  AuthedAdminCohortsCohortRoute: AuthedAdminCohortsCohortRoute,
 }
 
 const AuthedAdminRouteRouteWithChildren =
@@ -378,15 +358,15 @@ const AuthedCohortsCohortIdRouteRouteWithChildren =
 interface AuthedRouteChildren {
   AuthedAdminRouteRoute: typeof AuthedAdminRouteRouteWithChildren
   AuthedCohortsCohortIdRouteRoute: typeof AuthedCohortsCohortIdRouteRouteWithChildren
-  AuthedOnboardingDetailsRoute: typeof AuthedOnboardingDetailsRoute
-  AuthedOnboardingProfileRoute: typeof AuthedOnboardingProfileRoute
+  AuthedOnboardingApplicationRoute: typeof AuthedOnboardingApplicationRoute
+  AuthedOnboardingIdentityRoute: typeof AuthedOnboardingIdentityRoute
 }
 
 const AuthedRouteChildren: AuthedRouteChildren = {
   AuthedAdminRouteRoute: AuthedAdminRouteRouteWithChildren,
   AuthedCohortsCohortIdRouteRoute: AuthedCohortsCohortIdRouteRouteWithChildren,
-  AuthedOnboardingDetailsRoute: AuthedOnboardingDetailsRoute,
-  AuthedOnboardingProfileRoute: AuthedOnboardingProfileRoute,
+  AuthedOnboardingApplicationRoute: AuthedOnboardingApplicationRoute,
+  AuthedOnboardingIdentityRoute: AuthedOnboardingIdentityRoute,
 }
 
 const AuthedRouteWithChildren =

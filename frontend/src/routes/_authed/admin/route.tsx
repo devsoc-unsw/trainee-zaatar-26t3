@@ -1,9 +1,10 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_authed/admin')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
-  return <div>Hello "/_authed/admin"!</div>
-}
+export const Route = createFileRoute("/_authed/admin")({
+  beforeLoad: () => {
+    const isAdmin = true; // TODO: replace with real admin check
+    if (!isAdmin) {
+      throw redirect({ to: "/" });
+    }
+  },
+});

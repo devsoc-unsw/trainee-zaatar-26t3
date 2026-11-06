@@ -1,9 +1,16 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/_authed/cohorts/$cohortId')({
-  component: RouteComponent,
-})
+export const Route = createFileRoute("/_authed/cohorts/$cohortId")({
+  component: CohortLayout,
+});
 
-function RouteComponent() {
-  return <div>Hello "/_authed/cohorts/$cohortId"!</div>
+function CohortLayout() {
+  return (
+    <div className="flex">
+      {/* TODO: nav bar for non-admin users */}
+      <main className="flex-1">
+        <Outlet />
+      </main>
+    </div>
+  );
 }
