@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/_authed/cohorts/$cohortId")({
+export const Route = createFileRoute("/_authed/cohorts/$cohortId/_member")({
   component: CohortLayout,
 });
 
