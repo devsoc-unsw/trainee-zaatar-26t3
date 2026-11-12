@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authed/cohorts/$cohortId/onboarding")({
-  component: OnboardingApplication,
+  component: IdentityOnboarding,
 });
 
-function OnboardingApplication() {
+function IdentityOnboarding() {
   return <div>Hello "/_authed/onboarding/application"!</div>;
 }

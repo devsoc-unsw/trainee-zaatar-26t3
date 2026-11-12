@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authed/invite/$inviteCode")({
-  component: RouteComponent,
+  component: InviteLanding,
 });
 
-function RouteComponent() {
+function InviteLanding() {
   return <div>Hello "/_authed/invite/$inviteCode"!</div>;
 }
